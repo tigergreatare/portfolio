@@ -2,10 +2,34 @@ import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Youtube } from "lucide-
 import { cn } from "../lib/utils"
 import { useToast } from "../hooks/use-toast"
 import { useState } from "react";
-
+import { FloatingDock } from "@/components/ui/FloatingDock";
 export const ContactSection =() =>{
     const {toast} = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    // 1️⃣  Build the array that FloatingDock expects
+  const socialLinks = [
+    {
+      title: "LinkedIn",
+      href: "https://www.linkedin.com/in/alaa-sbai-abbassi-371055330/",
+      icon: (
+        <Linkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+    },
+    {
+      title: "Instagram",
+      href: "https://www.instagram.com/ali_sbai_ne/",
+      icon: (
+        <Instagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+    },
+    {
+      title: "YouTube",
+      href: "https://www.youtube.com/channel/UCkvGvYCP_zyooK2dQwFECAw",
+      icon: (
+        <Youtube className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+    },
+  ];
    const handleSubmit = (e) => {
     e.preventDefault()
     setIsSubmitting(true);
@@ -72,23 +96,11 @@ export const ContactSection =() =>{
                 </div>
                 <div className="pt-8">
                    <h4 className="font-medium mb-4"> Connect With Me</h4>
-                   <div className="flex space-x-4 justify-center">
-                    <a href="https://www.linkedin.com/in/alaa-sbai-abbassi-371055330/"
-                    target="_blank"
-                    >
-                        <Linkedin />
-                    </a>
-                    <a href="https://www.instagram.com/ali_sbai_ne/"
-                    target="_blank"
-                    >
-                        <Instagram />
-                    </a>
-                    <a href="https://www.youtube.com/channel/UCkvGvYCP_zyooK2dQwFECAw"
-                    target="_blank"
-                    >
-                        <Youtube />
-                    </a>
-                   </div>
+                   <FloatingDock
+                items={socialLinks}
+                desktopClassName="justify-center"
+                mobileClassName="translate-y-6"
+              />
                 </div>
             </div>
             <div className="bg-card p-8 rounded-lg shadow-xs"
